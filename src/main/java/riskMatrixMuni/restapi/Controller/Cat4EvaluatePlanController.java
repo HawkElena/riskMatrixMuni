@@ -3,6 +3,8 @@ package riskMatrixMuni.restapi.Controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,10 @@ import riskMatrixMuni.restapi.Models.CompositeKeyFirst;
 import riskMatrixMuni.restapi.Request.Cat4EvaluatePlanRequestDTO;
 import riskMatrixMuni.restapi.Services.Cat4EvaluatePlanService;
 import riskMatrixMuni.restapi.Services.Cat4EvaluationResponsabileForService;
+
+
+
+
 
 @RestController
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
@@ -152,7 +158,9 @@ public class Cat4EvaluatePlanController {
 			entityInterno = entityService.save(pEntity);
 
 			//aca hay que hacer el proceso de guardar los positions
-			List<Long> PositionId = pEntity.getPositions().stream().map(position -> position.getResp_position_id()).toList();
+//			List<Long> PositionId = pEntity.getPositions().stream().map(position -> position.getResp_position_id()).toList();
+			List<Long> PositionId = pEntity.getPositions().stream().map(position -> position.getResp_position_id()).collect(Collectors.toList());
+			
 			Long PlanId = entityInterno.getId();
 			Cat4EvaluateResponsabilefor	pEntity2 = new Cat4EvaluateResponsabilefor();
 			
