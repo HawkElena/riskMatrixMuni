@@ -158,7 +158,6 @@ public class Cat4EvaluatePlanController {
 			entityInterno = entityService.save(pEntity);
 
 			//aca hay que hacer el proceso de guardar los positions
-//			List<Long> PositionId = pEntity.getPositions().stream().map(position -> position.getResp_position_id()).toList();
 			List<Long> PositionId = pEntity.getPositions().stream().map(position -> position.getResp_position_id()).collect(Collectors.toList());
 			
 			Long PlanId = entityInterno.getId();

@@ -88,7 +88,6 @@ public class AuthController {
 			
 			
 //			se pudo leer el valor directo a un entero  intRolId = usrlog.getRoles().stream().map(rol -> rol.getId()).toList().get(0);
-//			List<Integer> RolId = usrlog.getRoles().stream().map(rol -> rol.getId()).toList();
 			List<Integer> RolId = usrlog.getRoles().stream().map(rol -> rol.getId()).collect(Collectors.toList());
 			List<String> RolNombre = usrlog.getRoles().stream().map(rol -> rol.getNombre()).collect(Collectors.toList());
 			
