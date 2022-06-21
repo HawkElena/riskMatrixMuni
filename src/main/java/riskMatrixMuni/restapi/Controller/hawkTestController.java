@@ -14,6 +14,6 @@ public class hawkTestController {
 
 	@GetMapping("/hawktest")
 	public String GetHello() {
-		return "hawk is son of God! Thanks many thanks father day!";
+		return "hawk is son of God! Thanks many thanks father day github !";
 	}
 }
