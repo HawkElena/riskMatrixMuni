@@ -29,40 +29,45 @@ public class Cat1GroupAreaController {
 	
 	@PostMapping("/groupAreaDML")
 	@Transactional
-	List<Cat1GroupArea> getGroupArea(@RequestBody Cat1GroupArea pGroupArea){
+	List<Cat1GroupArea> getGroupArea(@RequestBody Cat1GroupArea pEntity){
 		List<Cat1GroupArea> lstEntityRet = new ArrayList<Cat1GroupArea>();
 		Cat1GroupArea entityInterno = new Cat1GroupArea();
 		
-		if(pGroupArea.get_opcionDML()== 1 || pGroupArea.get_opcionDML() == 3 ) {
-
-			entityInterno = entityService.save(pGroupArea);
+		if(pEntity.get_opcionDML()== 1 || pEntity.get_opcionDML() == 3 ) {
+			long maxTemCat4;
+			if(pEntity.get_opcionDML()==1) {
+				maxTemCat4 = entityService.max(pEntity.getMuni_id());
+				pEntity.setId(maxTemCat4);				
+			}
+			
+			entityInterno = entityService.save(pEntity);
 			entityInterno.set_message("the register was inserted successfully...");			
-			entityInterno.set_opcionDML(pGroupArea.get_opcionDML());
+			entityInterno.set_opcionDML(pEntity.get_opcionDML());
 			lstEntityRet.add(entityInterno);
 			
-		}else if (pGroupArea.get_opcionDML()== 2){
+		}else if (pEntity.get_opcionDML()== 2){
 			
 			CompositeKeyFirst pk1 = new CompositeKeyFirst();
-			pk1.setMuni_id(pGroupArea.getMuni_id());
-			pk1.setId(pGroupArea.getId());
+			pk1.setMuni_id(pEntity.getMuni_id());
+			pk1.setId(pEntity.getId());
 			
 			entityInterno.setMuni_id(pk1.getMuni_id());
 			entityInterno.setId(pk1.getId());
 			
 			if(entityService.deleteById(pk1)) {
 				entityInterno.set_message("the register was deleted successfully..." + pk1);
-				entityInterno.set_opcionDML(pGroupArea.get_opcionDML());
+				entityInterno.set_opcionDML(pEntity.get_opcionDML());
 			}else {
 				entityInterno.set_message("something was wrong chek all parameters..." + pk1);
-				entityInterno.set_opcionDML(pGroupArea.get_opcionDML());
+				entityInterno.set_opcionDML(pEntity.get_opcionDML());
 			}
 			
 			lstEntityRet.add(entityInterno);
-		}else if(pGroupArea.get_opcionDML() == 4) {
+		}else if(pEntity.get_opcionDML() == 4) {
 			
 			List<Cat1GroupArea> test =  entityService.buscarxnombre(
-					pGroupArea.getName()
-					,pGroupArea.getMuni_id()
+					pEntity.getName()
+					,pEntity.getMuni_id()
 					);
 
 			lstEntityRet= test;

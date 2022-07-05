@@ -28,4 +28,11 @@ public interface Cat1GroupAreaRepository extends JpaRepository<Cat1GroupArea, Co
 			+ "		AND 	area_group_name like :name ",nativeQuery = true)
     List<Cat1GroupArea> buscarxnombre(@Param("name") String name, long muni_id);
 	
+	
+	@Query(value= "SELECT 	ifnull(max(group_area_id),0) + 1  cuenta "
+			+ "		FROM 	tbl_cat1_group_area  "
+			+ "		WHERE  	group_area_muni_id = :muni_id ",nativeQuery = true)
+	public long max(@Param("muni_id")  long muni_id);
+
+	
 }

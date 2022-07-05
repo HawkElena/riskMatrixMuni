@@ -45,6 +45,12 @@ public class Cat2AreaEvaluateServiceImpl implements Cat2AreaEvaluateService {
 		return entityRepository.buscarxGropuId(group_area_id, muni_id) ;
 	}
 
+	@Override
+	public long max(long muni_id) {
+		return entityRepository.max(muni_id);
+		
+	}
+
 
 //	@Override
 //	public List<Cat2AreaEvaluate> buscarxGroupId(long group_area_id, long muni_id) {
