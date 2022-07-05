@@ -2,6 +2,7 @@ package riskMatrixMuni.restapi.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -35,7 +36,13 @@ public class Cat3EventController {
 		Cat3Event entityInterno = new Cat3Event();
 		
 		if(pEntity.get_opcionDML()== 1 || pEntity.get_opcionDML() == 3 ) {
-
+			long maxTemCat4;
+			if(pEntity.get_opcionDML()==1) {
+				maxTemCat4 = entityService.max(pEntity.getMuni_id());
+				pEntity.setId(maxTemCat4);				
+				System.out.println("El max = " + pEntity.getId());
+			}
+			
 			entityInterno = entityService.save(pEntity);
 			entityInterno.set_message("the register was inserted successfully...");			
 			entityInterno.set_opcionDML(pEntity.get_opcionDML());
@@ -68,12 +75,63 @@ public class Cat3EventController {
 
 			lstEntityRet= lstEntityB;
 		}else if(pEntity.get_opcionDML() == 5) {
+			
 			List<Cat3Event> lstEntityB =  entityService.buscarxAreaId(
 					pEntity.getEvaluate_id()
 					,pEntity.getMuni_id()
 					);
 
 			lstEntityRet= lstEntityB;
+		}else if(pEntity.get_opcionDML() == 6) {
+
+//			Cat3Event itemTempEvent = new Cat3Event();
+			
+			List<Map<String, ?>> lstEntityB =  entityService.procListarEvent(
+					pEntity.getMuni_id()
+					,pEntity.get_group_id()
+					,pEntity.getEvaluate_id()
+					,pEntity.getId()
+					,pEntity.get_group_name()
+					,pEntity.get_area_name()
+					,pEntity.get_area_name()
+					);
+			
+			System.out.println("El numero de registros = " + lstEntityB.size());
+			for (Map<String, ?> element: lstEntityB) {
+				Cat3Event lstTempEvent = new Cat3Event();
+				
+				System.out.println("-----------------------------------------------------" );
+				int 	tmpMunis 				=	(Integer)	element.get("event_muni_id");
+				int 	tmpid 					=	(Integer)	element.get("event_id");
+				String 	name					=	(String)	element.get("event_description");
+				int 	tmpAreaId 				=	(Integer)	element.get("event_area_evaluate_id");
+				String 	tmpGroupId 				=	String.valueOf(element.get("group_id"));
+				String 	tmpGroupName			=	(String)	element.get("group_name");
+				String 	tmpAreaName				=	(String)	element.get("area_name");
+//				String 	tmpEventName			=	(String)	element.get("event_description");
+				
+				
+				System.out.println("Entro en el for y la variable muni = " + tmpMunis);
+				System.out.println("Entro en el for y la variable id = " + tmpid);
+				System.out.println("Entro en el for y la variable nombreevento = " + name);
+				System.out.println("Entro en el for y la variable areaid = " + tmpAreaId);
+				System.out.println("Entro en el for y la variable groupId = " + tmpGroupId);
+				System.out.println("Entro en el for y la variable GroupNmae = " + tmpGroupName);
+				System.out.println("Entro en el for y la variable AreaName = " + tmpAreaName);
+//				System.out.println("Entro en el for y la variable EventName = " + tmpEventName);
+				
+				lstTempEvent.setMuni_id(tmpMunis);
+				lstTempEvent.setId(tmpid);
+				lstTempEvent.setName(name);
+				lstTempEvent.setEvaluate_id(tmpAreaId);
+				lstTempEvent.set_group_id(Long.valueOf(tmpGroupId));
+				lstTempEvent.set_group_name(tmpGroupName);
+				lstTempEvent.set_area_name(tmpAreaName);
+//				lstTempEvent.set_event_name(tmpEventName);
+			
+				lstEntityRet.add(lstTempEvent);
+			}
+			
 			
 		};
 			

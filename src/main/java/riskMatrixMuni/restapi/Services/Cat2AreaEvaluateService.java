@@ -20,4 +20,5 @@ public interface Cat2AreaEvaluateService {
 	Cat2AreaEvaluate save(Cat2AreaEvaluate pCat2AreaEvaluate);
 
 	boolean deleteById(CompositeKeyFirst keyClasification);
+	public long max(long muni_id);
 }

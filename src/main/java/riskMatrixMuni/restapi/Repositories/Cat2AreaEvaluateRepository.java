@@ -32,4 +32,10 @@ public interface Cat2AreaEvaluateRepository extends JpaRepository<Cat2AreaEvalua
 			+ "		AND 	area_evaluate_group_area_id = :group_area_id ",nativeQuery = true)
     List<Cat2AreaEvaluate> buscarxGropuId(@Param("group_area_id") long group_area_id, long muni_id);
 	
+	
+	
+	@Query(value= "SELECT 	ifnull(max(area_evaluate_id),0) + 1  cuenta "
+			+ "		FROM 	tbl_cat2_area_evaluate  "
+			+ "		WHERE  	area_evaluate_muni_id = :muni_id ",nativeQuery = true)
+	public long max(@Param("muni_id")  long muni_id);
 }

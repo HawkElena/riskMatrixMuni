@@ -1,0 +1,29 @@
+[33mcommit cffd440c6b1afe420dbce472fc3d31a986cefe8a[m[33m ([m[1;36mHEAD -> [m[1;32mhawkDeveloper[m[33m, [m[1;31morigin/hawkDeveloper[m[33m)[m
+Author: hawk <alancamey@gmail.com>
+Date:   Tue Jun 21 11:02:52 2022 -0400
+
+    quite las lineas comentadas por si da conflicto
+
+[33mcommit 45bec6243dd37e7ea8923da850f4f9e226e7613d[m
+Author: hawk <alancamey@gmail.com>
+Date:   Tue Jun 21 10:49:57 2022 -0400
+
+    resuelto el error de toList() a collect(Collector.toList())
+
+[33mcommit a716dbce4d32da9853495672abbff1986e72e6e8[m
+Author: hawk <alancamey@gmail.com>
+Date:   Tue Jun 21 10:06:22 2022 -0400
+
+    para que suba la version y ver que corra en azure
+
+[33mcommit f7fac245fc02d495fe4dd3ac4dd29debde5a998a[m
+Author: hawk <alancamey@gmail.com>
+Date:   Sun Jun 19 12:50:29 2022 -0400
+
+    para que pueda leer la base de datos remota
+
+[33mcommit 8ed049237a1314054464419d9c9d7cf21fc488fb[m
+Author: hawk <alancamey@gmail.com>
+Date:   Sat Jun 18 12:12:31 2022 -0400
+
+    Inicia Subida del proyecto

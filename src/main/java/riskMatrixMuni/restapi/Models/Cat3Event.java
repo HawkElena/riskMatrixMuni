@@ -37,6 +37,20 @@ public class Cat3Event {
 	private int 	evaluate_id;
 	
 	@Transient
+	@Column(name = "_group_id")
+	private long	_group_id			;
+	
+	@Transient
+	@Column(name = "_group_name")
+	private String	_group_name			;
+	
+	@Transient
+	@Column(name = "_area_name")
+	private String	_area_name			;
+	
+
+	
+	@Transient
 	@Column(name = "_message")
 	private String	_message			;
 	

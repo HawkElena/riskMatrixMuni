@@ -61,5 +61,15 @@ public class Cat1GroupAreaServiceImpl implements Cat1GroupAreaService {
 		}
 		return blnDeleted;  
 	}
+
+	@Override
+	public long max(long muni_id) {
+		return entityRepository.max(muni_id);
+		
+	}
+
+
+	
+
 	
 }

@@ -33,7 +33,15 @@ public class Cat2AreaEvaluateController {
 		Cat2AreaEvaluate entityInterno = new Cat2AreaEvaluate();
 
 		if (pEntity.get_opcionDML() == 1 || pEntity.get_opcionDML() == 3) {
-
+			long maxTemCat4;
+			if(pEntity.get_opcionDML()==1) {
+				System.out.println("Entro a el max");
+				maxTemCat4 = entityService.max(pEntity.getMuni_id());
+				System.out.println("Entro a el max = " + maxTemCat4);
+				
+				pEntity.setId(maxTemCat4);				
+			}
+			
 			entityInterno = entityService.save(pEntity);
 			entityInterno.set_message("the register was inserted successfully...");
 			entityInterno.set_opcionDML(pEntity.get_opcionDML());

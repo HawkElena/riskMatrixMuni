@@ -20,4 +20,5 @@ public interface Cat1GroupAreaService {
 
 	boolean deleteById(CompositeKeyFirst keyGroupArea);
 	
+	public long max(long muni_id);
 }
